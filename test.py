@@ -25,7 +25,6 @@ def extract_feature(file_name,mfcc,chroma,mel):
     return result
 
 
-#DataFlair - Emotions in the RAVDESS dataset
 emotions={
   '01':'neutral',
   '02':'calm',
@@ -36,11 +35,11 @@ emotions={
   '07':'disgust',
   '08':'surprised'
 }
-#DataFlair - Emotions to observe
+
 observed_emotions=['calm', 'happy','angry', 'fearful', 'disgust']
 
 
-#DataFlair - Load the data and extract features for each sound file
+
 def load_data(test_size=0.25):
     x,y=[],[]
     for file in glob.glob("C:\\Users\\sachi\\www\\audio\\dataset\\Actor_*\\*.wav"):
@@ -52,10 +51,16 @@ def load_data(test_size=0.25):
         x.append(feature)
         y.append(emotion)
     return train_test_split(np.array(x), y, test_size=test_size, random_state=9)
+
 x_train,x_test,y_train,y_test=load_data(test_size=0.25)
+
 model=MLPClassifier(alpha=0.01, batch_size=256, epsilon=1e-08, hidden_layer_sizes=(300,), learning_rate='adaptive', max_iter=500)
+
 model.fit(x_train,y_train)
+
 y_pred=model.predict(x_test)
+
+
 def load_new_data():
     x,y=[],[]
     for file in glob.glob("C:\\Users\\sachi\\www\\audio\\uploads\\*.wav"):
@@ -67,8 +72,12 @@ def load_new_data():
         x.append(feature)
         y.append(emotion)
     return np.array(x),y
+
 xx_test,yy_test=load_new_data()
+
 yy_pred=model.predict(xx_test)
-print(yy_pred[len(yy_pred)-1]);
+
+print(yy_pred[len(yy_pred)-1])
+
 accuracy=accuracy_score(y_true=y_test, y_pred=y_pred)
 print(" {:.2f}".format(accuracy*100))

@@ -15,6 +15,7 @@ if(isset($_POST['save_audio']) && $_POST['save_audio']=="Upload Audio")
   $dir='uploads/'.(string)$count;
   $audio_path=$dir.basename($_FILES['audioFile']['name']);
   if(move_uploaded_file($_FILES['audioFile']['tmp_name'],$audio_path)){
+    saveAudio($audio_path);
     $command = escapeshellcmd('python test.py &');
       $output = shell_exec($command);
 
@@ -43,7 +44,7 @@ function saveAudio($fileName){
   mysqli_query($conn,$query);
   if(mysqli_affected_rows($conn)>0)
   {
-    echo "audio file path save in database.";
+    // echo "audio file path save in database.";
   }
   mysqli_close($conn);
 }
