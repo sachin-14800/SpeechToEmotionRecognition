@@ -1,3 +1,8 @@
+<?php
+$output="";
+$command = escapeshellcmd('python abc.py &');
+  $output = shell_exec($command);
+ ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -12,7 +17,7 @@
         <i class="fas fa-language"></i> Speech To Em<i class="far fa-laugh-beam bounce1"></i>ti<i class="fas fa-angry bounce2"></i>n Recognition
       </h2>
     </div>
-    <form action="upload.php" method="post" enctype="multipart/form-data">
+    <form action="new.php" method="post" enctype="multipart/form-data">
       <div class=" box1">
         <div class="box2">
           <div class="image">
