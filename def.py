@@ -45,8 +45,6 @@ def load_new_data():
     for file in glob.glob("C:\\Users\\sachi\\www\\audio\\uploads\\*.wav"):
         file_name=os.path.basename(file)
         emotion=emotions[file_name.split("-")[2]]
-        if emotion not in observed_emotions:
-            continue
         feature=extract_feature(file, mfcc=True, chroma=True, mel=True)
         x.append(feature)
         y.append(emotion)
