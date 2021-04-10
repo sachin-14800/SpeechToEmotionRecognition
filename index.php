@@ -1,8 +1,8 @@
 <?php
 // Running the python file using the shell command on terminal on backend
-$output="";
-$command = escapeshellcmd('python abc.py &');
-  $output = shell_exec($command);
+// $output="";
+// $command = escapeshellcmd('python abc.py &');
+//   $output = shell_exec($command);
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -18,7 +18,7 @@ $command = escapeshellcmd('python abc.py &');
   <div class="text">
     <h2>
       <i class="fas fa-language"></i> Speech To Em<i class="far fa-laugh-beam bounce1"></i>ti<i class="fas fa-angry bounce2"></i>n Recognition
-      <p class="mono">Note : The soundfile must be a monotone. Monotone refers to a sound, for example music or speech, that has a single unvaried tone.</p>
+      <p class="mono">Note : The file must be in .wav format with bitrate= 16 and sampling frequency= 48KHz</p>
 
     </h2>
   </div>

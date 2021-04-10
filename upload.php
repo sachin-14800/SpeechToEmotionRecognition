@@ -1,24 +1,13 @@
 <?php
-// Establishing connection with the database
-$conn=mysqli_connect('localhost','root','','audiolibdb');
-if(!$conn)
-{
-  die('server not connected');
-}
-$query="select * from audios";
-$result=mysqli_query($conn,$query);
-// Mainting the count of the no. of tuples
-$count=mysqli_num_rows($result)+1;
 $ans1="";
 $ans2="";
 if(isset($_POST['save_audio']) && $_POST['save_audio']=="Upload Audio")
 {
 // Appending the count to the starting of the filename so that incoming file gets stored at the end
-  $dir='uploads/'.(string)$count;
-  $audio_path=$dir.basename($_FILES['audioFile']['name']);
+  $dir='uploads/'."new";
+  $audio_path=$dir.".wav";
   // Storing the file in the desired path
   if(move_uploaded_file($_FILES['audioFile']['tmp_name'],$audio_path)){
-    saveAudio($audio_path);
     // Running the python file using the shell command on terminal
     $command = escapeshellcmd('python def.py &');
       $output = shell_exec($command);
@@ -38,21 +27,7 @@ if(isset($_POST['save_audio']) && $_POST['save_audio']=="Upload Audio")
         $ans2=$s;
   }
 }
-// Function to store filename in database
-function saveAudio($fileName){
-  $conn=mysqli_connect('localhost','root','','audiolibdb');
-  if(!$conn)
-  {
-    die('server not connected');
-  }
-  $query="insert into audios(filename) values ('{$fileName}')";
-  mysqli_query($conn,$query);
-  if(mysqli_affected_rows($conn)>0)
-  {
-    echo "audio file path saved in database.";
-  }
-  mysqli_close($conn);
-}
+
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -67,7 +42,7 @@ function saveAudio($fileName){
     <div class="text">
       <h2>
         <i class="fas fa-language"></i> Speech To Em<i class="far fa-laugh-beam bounce1"></i>ti<i class="fas fa-angry bounce2"></i>n Recognition
-        <p class="mono">Note : The soundfile must be a monotone. Monotone refers to a sound, for example music or speech, that has a single unvaried tone.</p>
+        <p class="mono">Note : The file must be in .wav format with bitrate= 16 and sampling frequency= 48KHz</p>
       </h2>
     </div>
     <!-- Displaying the output -->
