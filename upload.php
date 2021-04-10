@@ -47,6 +47,10 @@ function saveAudio($fileName){
   }
   $query="insert into audios(filename) values ('{$fileName}')";
   mysqli_query($conn,$query);
+  if(mysqli_affected_rows($conn)>0)
+  {
+    echo "audio file path saved in database.";
+  }
   mysqli_close($conn);
 }
  ?>
