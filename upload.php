@@ -9,7 +9,7 @@ if(isset($_POST['save_audio']) && $_POST['save_audio']=="Upload Audio")
   // Storing the file in the desired path
   if(move_uploaded_file($_FILES['audioFile']['tmp_name'],$audio_path)){
     // Running the python file using the shell command on terminal
-    $command = escapeshellcmd('python def.py &');
+    $command = escapeshellcmd('python model_predict.py &');
       $output = shell_exec($command);
     // Splitting the output in 2 variables ans1 and ans2
         $s="";
@@ -46,8 +46,8 @@ if(isset($_POST['save_audio']) && $_POST['save_audio']=="Upload Audio")
       </h2>
     </div>
     <!-- Displaying the output -->
-    <div class=" box1">
-      <div class="box2">
+    <div class=" box3">
+      <div class="box4">
         <div class="image">
           <i class="fas fa-poll"></i>
         </div>
@@ -57,7 +57,13 @@ if(isset($_POST['save_audio']) && $_POST['save_audio']=="Upload Audio")
           </div>
       </div>
     </div>
+    <div class="footer-dark">
 
+               <div class="copyright">
+                   <p>Adwet Ojha &nbsp;&nbsp;&nbsp;&nbsp; Rishika Patel &nbsp;&nbsp;&nbsp;&nbsp; Sachin Gupta &nbsp;&nbsp;&nbsp;&nbsp; Yashaswa Jain</p>
+               </div>
+
+       </div>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
   </body>

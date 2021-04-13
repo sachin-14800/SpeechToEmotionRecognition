@@ -68,6 +68,6 @@ y_pred=model.predict(x_test)
 accuracy=accuracy_score(y_true=y_test, y_pred=y_pred)
 
 #Storing the model and accuracy in abcd.pickle
-pickling_on = open("abcd.pickle","wb")
+pickling_on = open("model.pickle","wb")
 pickle.dump([model,accuracy], pickling_on)
 pickling_on.close()
